@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface FlutterVoipKitPlugin : NSObject<FlutterPlugin>
+@interface FlutterZVoipKitPlugin : NSObject<FlutterPlugin>
 @end

@@ -1,4 +1,4 @@
-package com.example.flutter_voip_kit
+package com.flutter_zvoip_kit
 
 import android.content.Context
 import android.util.Log
@@ -12,31 +12,31 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** FlutterVoipKitPlugin
+/** FlutterZVoipKitPlugin
  *
  * Android Implementation Helped by: https://github.com/doneservices/flutter_callkeep/blob/master/LICENSE Copyright (c) 2019 1337 Marknadsplatser AB
  *
  * */
-class FlutterVoipKitPlugin: FlutterPlugin, ActivityAware {
+class FlutterZVoipKitPlugin: FlutterPlugin, ActivityAware {
   companion object {
     @JvmStatic
     fun registerWith(registrar: PluginRegistry.Registrar) {
-        val plugin = FlutterVoipKitPlugin();
+        val plugin = FlutterZVoipKitPlugin();
         plugin.setup(registrar.messenger(),registrar.context().applicationContext);
     }
-    private const val TAG = "FlutterVoipKitPlugin"
-    val methodChannelName = "flutter_voip_kit"
-    val eventChannelName  = "flutter_voip_kit.callEventChannel";
+    private const val TAG = "FlutterZVoipKitPlugin"
+    val methodChannelName = "flutter_zvoip_kit"
+    val eventChannelName  = "flutter_zvoip_kit.callEventChannel";
 
     ///methods
-    val methodChannelStartCall = "flutter_voip_kit.startCall"
-    val methodChannelReportIncomingCall = "flutter_voip_kit.reportIncomingCall"
-    val methodChannelReportOutgoingCall = "flutter_voip_kit.reportOutgoingCall"
+    val methodChannelStartCall = "flutter_zvoip_kit.startCall"
+    val methodChannelReportIncomingCall = "flutter_zvoip_kit.reportIncomingCall"
+    val methodChannelReportOutgoingCall = "flutter_zvoip_kit.reportOutgoingCall"
     val methodChannelReportCallEnded =
-            "flutter_voip_kit.reportCallEnded";
-    val methodChannelEndCall = "flutter_voip_kit.endCall";
-    val methodChannelHoldCall = "flutter_voip_kit.holdCall";
-    val methodChannelCheckPermissions = "flutter_voip_kit.checkPermissions" //TODO: ios
+            "flutter_zvoip_kit.reportCallEnded";
+    val methodChannelEndCall = "flutter_zvoip_kit.endCall";
+    val methodChannelHoldCall = "flutter_zvoip_kit.holdCall";
+    val methodChannelCheckPermissions = "flutter_zvoip_kit.checkPermissions" //TODO: ios
 
   }
 

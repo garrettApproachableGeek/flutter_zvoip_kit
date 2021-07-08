@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_voip_kit/call.dart';
-import 'package:flutter_voip_kit/call_manager.dart';
+import 'package:flutter_zvoip_kit/call.dart';
+import 'package:flutter_zvoip_kit/call_manager.dart';
 
 enum CallEndedReason { failed, remoteEnded, unanswered }
 typedef Future<bool> CallStateChangeHandler(Call call);
@@ -16,29 +16,29 @@ class FlutterVoipKit {
       CallManager.callListStreamController.stream;
 
   ///handle call state changes and return if event is successful or not
-  ///The most important setup of flutter_voip_kit
+  ///The most important setup of flutter_zvoip_kit
   ///If all states are not accounted for, your calls may not work
   ///for example: When a call becomes CallState.Connecting your VOIP service should perform the connection for that call and return true/false on success
   ///
   ///See example for more details
   static CallStateChangeHandler? callStateChangeHandler;
 
-  static const _methodChannelName = 'flutter_voip_kit';
-  static const _callEventChannelName = "flutter_voip_kit.callEventChannel";
+  static const _methodChannelName = 'flutter_zvoip_kit';
+  static const _callEventChannelName = "flutter_zvoip_kit.callEventChannel";
   static final _callManager = CallManager();
 
   //methods
-  static const _methodChannelStartCall = "flutter_voip_kit.startCall";
+  static const _methodChannelStartCall = "flutter_zvoip_kit.startCall";
   static const _methodChannelReportIncomingCall =
-      "flutter_voip_kit.reportIncomingCall";
+      "flutter_zvoip_kit.reportIncomingCall";
   static const _methodChannelReportOutgoingCall =
-      "flutter_voip_kit.reportOutgoingCall";
+      "flutter_zvoip_kit.reportOutgoingCall";
   static const _methodChannelReportCallEnded =
-      "flutter_voip_kit.reportCallEnded";
-  static const _methodChannelEndCall = "flutter_voip_kit.endCall";
-  static const _methodChannelHoldCall = "flutter_voip_kit.holdCall";
+      "flutter_zvoip_kit.reportCallEnded";
+  static const _methodChannelEndCall = "flutter_zvoip_kit.endCall";
+  static const _methodChannelHoldCall = "flutter_zvoip_kit.holdCall";
   static const _methodChannelCheckPermissions =
-      "flutter_voip_kit.checkPermissions";
+      "flutter_zvoip_kit.checkPermissions";
 
   //events
   static const event_answerCall = "answerCall";
@@ -141,8 +141,8 @@ class FlutterVoipKit {
 
   ///hold call initiated by user. Also could call Call.hold()
   static Future<bool> holdCall(String uuid, {bool onHold = true}) async {
-    final res = await _methodChannel.invokeMethod(
-        _methodChannelHoldCall, {"uuid": uuid, "hold": onHold});
+    final res = await _methodChannel
+        .invokeMethod(_methodChannelHoldCall, {"uuid": uuid, "hold": onHold});
     return res as bool;
   }
 

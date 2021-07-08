@@ -1,4 +1,4 @@
-name: flutter_voip_kit
+name: flutter_zvoip_kit
 description: Use iOS CallKit and Android's Telecom library to create and receive calls with native functionality. e.g. Calls pop up on user's lock screen.
 version: 0.0.4
 homepage: https://bradenbagby.com/dart/fluttervoipkit
@@ -27,7 +27,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.flutter_voip_kit
-        pluginClass: FlutterVoipKitPlugin
+        package: com.flutter_zvoip_kit
+        pluginClass: FlutterZVoipKitPlugin
       ios:
-        pluginClass: FlutterVoipKitPlugin
+        pluginClass: FlutterZVoipKitPlugin

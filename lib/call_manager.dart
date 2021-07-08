@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_voip_kit/call.dart';
+import 'package:flutter_zvoip_kit/call.dart';
 
-import 'flutter_voip_kit.dart';
+import 'flutter_zvoip_kit.dart';
 
 ///internal class. keeps track of all active calls. Should not be accessed outside of plugin
 class CallManager {

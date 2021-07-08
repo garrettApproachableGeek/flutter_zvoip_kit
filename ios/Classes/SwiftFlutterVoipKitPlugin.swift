@@ -8,7 +8,7 @@ class CallStreamHandler: NSObject, FlutterStreamHandler {
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         print("CallStreamHandler: on listen");
-        SwiftFlutterVoipKitPlugin.callController.actionListener = { event, uuid, args in
+        SwiftFlutterZVoipKitPlugin.callController.actionListener = { event, uuid, args in
             print("Action listener: \(event)")
             var data = ["event" : event.rawValue, "uuid": uuid.uuidString] as [String: Any]
             if args != nil{
@@ -21,27 +21,27 @@ class CallStreamHandler: NSObject, FlutterStreamHandler {
     
     public func onCancel(withArguments arguments: Any?) -> FlutterError? {
         print("CallStreamHanlder: on cancel")
-        SwiftFlutterVoipKitPlugin.callController.actionListener = nil
+        SwiftFlutterZVoipKitPlugin.callController.actionListener = nil
         return nil
     }
     
 }
 
-public class SwiftFlutterVoipKitPlugin: NSObject, FlutterPlugin {
-    static let _methodChannelName = "flutter_voip_kit";
-    static let _callEventChannelName = "flutter_voip_kit.callEventChannel"
+public class SwiftFlutterZVoipKitPlugin: NSObject, FlutterPlugin {
+    static let _methodChannelName = "flutter_zvoip_kit";
+    static let _callEventChannelName = "flutter_zvoip_kit.callEventChannel"
     static let callController = CallController()
     
     
     //methods
-    static let _methodChannelStartCall = "flutter_voip_kit.startCall"
-    static let _methodChannelReportIncomingCall = "flutter_voip_kit.reportIncomingCall"
-    static let _methodChannelReportOutgoingCall = "flutter_voip_kit.reportOutgoingCall"
+    static let _methodChannelStartCall = "flutter_zvoip_kit.startCall"
+    static let _methodChannelReportIncomingCall = "flutter_zvoip_kit.reportIncomingCall"
+    static let _methodChannelReportOutgoingCall = "flutter_zvoip_kit.reportOutgoingCall"
     static let _methodChannelReportCallEnded =
-        "flutter_voip_kit.reportCallEnded";
-    static let _methodChannelEndCall = "flutter_voip_kit.endCall";
-    static let _methodChannelHoldCall = "flutter_voip_kit.holdCall";
-    static let _methodChannelCheckPermissions = "flutter_voip_kit.checkPermissions";
+        "flutter_zvoip_kit.reportCallEnded";
+    static let _methodChannelEndCall = "flutter_zvoip_kit.endCall";
+    static let _methodChannelHoldCall = "flutter_zvoip_kit.holdCall";
+    static let _methodChannelCheckPermissions = "flutter_zvoip_kit.checkPermissions";
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         
@@ -52,13 +52,13 @@ public class SwiftFlutterVoipKitPlugin: NSObject, FlutterPlugin {
         let callEventChannel = FlutterEventChannel(name: _callEventChannelName, binaryMessenger: registrar.messenger())
         callEventChannel.setStreamHandler(CallStreamHandler())
         
-        let instance = SwiftFlutterVoipKitPlugin()
+        let instance = SwiftFlutterZVoipKitPlugin()
         registrar.addMethodCallDelegate(instance, channel: methodChannel)
     }
     
     ///useful for integrating with VIOP notifications
     static public func reportIncomingCall(handle: String, uuid: String, result: FlutterResult?){
-        SwiftFlutterVoipKitPlugin.callController.reportIncomingCall(uuid: UUID(uuidString: uuid)!, handle: handle) { (error) in
+        SwiftFlutterZVoipKitPlugin.callController.reportIncomingCall(uuid: UUID(uuidString: uuid)!, handle: handle) { (error) in
             print("ERROR: \(error?.localizedDescription ?? "none")")
             result?(error == nil)
         }
@@ -67,50 +67,50 @@ public class SwiftFlutterVoipKitPlugin: NSObject, FlutterPlugin {
     //TODO: remove these defaults and get as arguments
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         let args = call.arguments as? Dictionary<String, Any>
-        if(call.method == SwiftFlutterVoipKitPlugin._methodChannelStartCall){
+        if(call.method == SwiftFlutterZVoipKitPlugin._methodChannelStartCall){
             if let handle = args?["handle"] as? String{
                 let uuidString = args?["uuid"] as? String;
-                SwiftFlutterVoipKitPlugin.callController.startCall(handle: handle, videoEnabled: false, uuid: uuidString)
+                SwiftFlutterZVoipKitPlugin.callController.startCall(handle: handle, videoEnabled: false, uuid: uuidString)
                 result(true)
             }else{
                 result(FlutterError.init(code: "bad args", message: nil, details: nil))
             }
-        }else if call.method == SwiftFlutterVoipKitPlugin._methodChannelReportIncomingCall{
+        }else if call.method == SwiftFlutterZVoipKitPlugin._methodChannelReportIncomingCall{
             if let handle = args?["handle"] as? String, let uuid = args?["uuid"] as? String{
-                SwiftFlutterVoipKitPlugin.reportIncomingCall(handle: handle, uuid: uuid, result: result)
+                SwiftFlutterZVoipKitPlugin.reportIncomingCall(handle: handle, uuid: uuid, result: result)
             }else{
                 result(FlutterError.init(code: "bad args", message: nil, details: nil))
             }
-        }else if call.method == SwiftFlutterVoipKitPlugin._methodChannelReportOutgoingCall{
+        }else if call.method == SwiftFlutterZVoipKitPlugin._methodChannelReportOutgoingCall{
             if let finishedConnecting = args?["finishedConnecting"] as? Bool, let uuid = args?["uuid"] as? String{
-                SwiftFlutterVoipKitPlugin.callController.reportOutgoingCall(uuid: UUID(uuidString: uuid)!, finishedConnecting: finishedConnecting);
+                SwiftFlutterZVoipKitPlugin.callController.reportOutgoingCall(uuid: UUID(uuidString: uuid)!, finishedConnecting: finishedConnecting);
                 result(true);
             }else{
                 result(FlutterError.init(code: "bad args", message: nil, details: nil))
             }
         }
-        else if call.method == SwiftFlutterVoipKitPlugin._methodChannelReportCallEnded{
+        else if call.method == SwiftFlutterZVoipKitPlugin._methodChannelReportCallEnded{
             if let reason = args?["reason"] as? String, let uuid = args?["uuid"] as? String{
-                SwiftFlutterVoipKitPlugin.callController.reportCallEnded(uuid: UUID(uuidString: uuid)!, reason: CallEndedReason.init(rawValue: reason)!);
+                SwiftFlutterZVoipKitPlugin.callController.reportCallEnded(uuid: UUID(uuidString: uuid)!, reason: CallEndedReason.init(rawValue: reason)!);
                 result(true);
             }else{
                 result(FlutterError.init(code: "bad args", message: nil, details: nil))
             }
-        }else if call.method == SwiftFlutterVoipKitPlugin._methodChannelEndCall{
+        }else if call.method == SwiftFlutterZVoipKitPlugin._methodChannelEndCall{
             if let uuid = args?["uuid"] as? String{
-                SwiftFlutterVoipKitPlugin.callController.end(uuid: UUID(uuidString: uuid)!)
+                SwiftFlutterZVoipKitPlugin.callController.end(uuid: UUID(uuidString: uuid)!)
                 result(true)
             }else{
                 result(FlutterError.init(code: "bad args", message: nil, details: nil))
             }
-        }else if call.method == SwiftFlutterVoipKitPlugin._methodChannelHoldCall{
+        }else if call.method == SwiftFlutterZVoipKitPlugin._methodChannelHoldCall{
             if let uuid = args?["uuid"] as? String, let hold = args?["hold"] as? Bool{
-                SwiftFlutterVoipKitPlugin.callController.setHeld(uuid: UUID(uuidString: uuid)!, onHold: hold)
+                SwiftFlutterZVoipKitPlugin.callController.setHeld(uuid: UUID(uuidString: uuid)!, onHold: hold)
                 result(true)
             }else{
                 result(FlutterError.init(code: "bad args", message: nil, details: nil))
             }
-        }else if call.method == SwiftFlutterVoipKitPlugin._methodChannelCheckPermissions{
+        }else if call.method == SwiftFlutterZVoipKitPlugin._methodChannelCheckPermissions{
             result(true) //no permissions needed on ios
         }
     }

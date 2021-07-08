@@ -1,4 +1,4 @@
-package com.example.flutter_voip_kit
+package com.flutter_zvoip_kit
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -55,25 +55,25 @@ class VoipPlugin(private val channel: MethodChannel, private val eventChannel: E
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         Log.d(TAG,"METHOD CALLED: ${call.method}")
         when(call.method){
-            FlutterVoipKitPlugin.methodChannelCheckPermissions -> {
+            FlutterZVoipKitPlugin.methodChannelCheckPermissions -> {
                 checkPermissions(call,result)
             }
-            FlutterVoipKitPlugin.methodChannelReportIncomingCall -> {
+            FlutterZVoipKitPlugin.methodChannelReportIncomingCall -> {
                 reportIncomingCall(call, result)
             }
-            FlutterVoipKitPlugin.methodChannelHoldCall -> {
+            FlutterZVoipKitPlugin.methodChannelHoldCall -> {
                 holdCall(call,result)
             }
-            FlutterVoipKitPlugin.methodChannelStartCall -> {
+            FlutterZVoipKitPlugin.methodChannelStartCall -> {
                 startCall(call,result)
             }
-            FlutterVoipKitPlugin.methodChannelEndCall -> {
+            FlutterZVoipKitPlugin.methodChannelEndCall -> {
                 endCall(call,result)
             }
-            FlutterVoipKitPlugin.methodChannelReportOutgoingCall -> {
+            FlutterZVoipKitPlugin.methodChannelReportOutgoingCall -> {
                 reportOutgoingCall(call,result)
             }
-            FlutterVoipKitPlugin.methodChannelReportCallEnded -> {
+            FlutterZVoipKitPlugin.methodChannelReportCallEnded -> {
                 reportCallEnded(call,result)
             }
             else -> {

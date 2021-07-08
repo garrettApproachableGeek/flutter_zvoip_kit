@@ -1,4 +1,4 @@
-package com.example.flutter_voip_kit;
+package com.flutter_zvoip_kit;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -22,12 +22,12 @@ import java.util.Set;
 import java.util.UUID;
 
 import static android.telecom.Connection.PROPERTY_SELF_MANAGED;
-import static com.example.flutter_voip_kit.Constants.EVENT_answerCall;
-import static com.example.flutter_voip_kit.Constants.EVENT_endCall;
-import static com.example.flutter_voip_kit.Constants.EVENT_startCall;
-import static com.example.flutter_voip_kit.Constants.EXTRA_CALLER_NAME;
-import static com.example.flutter_voip_kit.Constants.EXTRA_CALL_NUMBER;
-import static com.example.flutter_voip_kit.Constants.EXTRA_CALL_UUID;
+import static com.flutter_zvoip_kit.Constants.EVENT_answerCall;
+import static com.flutter_zvoip_kit.Constants.EVENT_endCall;
+import static com.flutter_zvoip_kit.Constants.EVENT_startCall;
+import static com.flutter_zvoip_kit.Constants.EXTRA_CALLER_NAME;
+import static com.flutter_zvoip_kit.Constants.EXTRA_CALL_NUMBER;
+import static com.flutter_zvoip_kit.Constants.EXTRA_CALL_UUID;
 
 public class VoipConnectionService extends ConnectionService {
 

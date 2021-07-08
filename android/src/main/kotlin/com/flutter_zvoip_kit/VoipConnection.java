@@ -1,4 +1,4 @@
-package com.example.flutter_voip_kit;
+package com.flutter_zvoip_kit;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,12 +15,12 @@ import androidx.annotation.RequiresApi;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.flutter_voip_kit.Constants.EVENT_answerCall;
-import static com.example.flutter_voip_kit.Constants.EVENT_endCall;
-import static com.example.flutter_voip_kit.Constants.EVENT_setHeld;
-import static com.example.flutter_voip_kit.Constants.EXTRA_CALLER_NAME;
-import static com.example.flutter_voip_kit.Constants.EXTRA_CALL_NUMBER;
-import static com.example.flutter_voip_kit.Constants.EXTRA_CALL_UUID;
+import static com.flutter_zvoip_kit.Constants.EVENT_answerCall;
+import static com.flutter_zvoip_kit.Constants.EVENT_endCall;
+import static com.flutter_zvoip_kit.Constants.EVENT_setHeld;
+import static com.flutter_zvoip_kit.Constants.EXTRA_CALLER_NAME;
+import static com.flutter_zvoip_kit.Constants.EXTRA_CALL_NUMBER;
+import static com.flutter_zvoip_kit.Constants.EXTRA_CALL_UUID;
 
 public class VoipConnection extends Connection {
 

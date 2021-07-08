@@ -1,4 +1,4 @@
-package com.example.flutter_voip_kit;
+package com.flutter_zvoip_kit;
 
 public class Constants {
     public static final String EXTRA_CALL_NUMBER = "EXTRA_CALL_NUMBER";

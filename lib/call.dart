@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'flutter_voip_kit.dart';
+import 'flutter_zvoip_kit.dart';
 
 enum CallState { connecting, active, held, ended, failed, incoming }
 

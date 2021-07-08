@@ -1,4 +1,4 @@
-group 'com.example.flutter_voip_kit'
+group 'com.flutter_zvoip_kit'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -31,7 +31,7 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdkVersion 23
+        minSdkVersion 21
     }
 }
 

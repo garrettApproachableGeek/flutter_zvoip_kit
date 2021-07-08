@@ -1,9 +1,9 @@
-name: flutter_voip_kit_example
-description: Demonstrates how to use the flutter_voip_kit plugin.
+name: flutter_zvoip_kit_example
+description: Demonstrates how to use the flutter_zvoip_kit plugin.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -12,10 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   uuid: ^3.0.4
-  
-  flutter_voip_kit:
+
+  flutter_zvoip_kit:
     # When depending on this package from a real application you should use:
-    #   flutter_voip_kit: ^x.y.z
+    #   flutter_zvoip_kit: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
@@ -34,7 +34,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

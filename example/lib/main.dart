@@ -4,8 +4,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter_voip_kit/call.dart';
-import 'package:flutter_voip_kit/flutter_voip_kit.dart';
+import 'package:flutter_zvoip_kit/call.dart';
+import 'package:flutter_zvoip_kit/flutter_zvoip_kit.dart';
 import 'package:uuid/uuid.dart';
 
 void main() {
@@ -182,7 +182,8 @@ class _HomePageState extends State<HomePage> {
   void checkPermissionsUntilGranted() {
     Future.delayed(const Duration(milliseconds: 100)).then((value) async {
       //delay to wait for init state to be done
-      hasPermission = await FlutterVoipKit.checkPermissions(openSettings: false);
+      hasPermission =
+          await FlutterVoipKit.checkPermissions(openSettings: false);
       bool first = true; //dont bring to settings first time
       while (!hasPermission) {
         await showDialog(

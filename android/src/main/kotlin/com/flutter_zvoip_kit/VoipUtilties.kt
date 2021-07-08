@@ -1,4 +1,4 @@
-package com.example.flutter_voip_kit
+package com.flutter_zvoip_kit
 
 import android.Manifest
 import android.annotation.SuppressLint
