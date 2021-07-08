@@ -8,7 +8,7 @@ import 'package:flutter_zvoip_kit/call_manager.dart';
 enum CallEndedReason { failed, remoteEnded, unanswered }
 typedef Future<bool> CallStateChangeHandler(Call call);
 
-class FlutterVoipKit {
+class FlutterZVoipKit {
   //public
 
   ///list of current active calls
@@ -54,7 +54,7 @@ class FlutterVoipKit {
 
   static Future<void> init(
       {required CallStateChangeHandler callStateChangeHandler}) async {
-    FlutterVoipKit.callStateChangeHandler = callStateChangeHandler;
+    FlutterZVoipKit.callStateChangeHandler = callStateChangeHandler;
 
     ///listen to event channel for device updates on call states
     _callEventChannel.receiveBroadcastStream().listen((eventDataRaw) async {

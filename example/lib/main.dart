@@ -40,12 +40,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    FlutterVoipKit.init(callStateChangeHandler: callStateChangeHandler);
+    FlutterZVoipKit.init(callStateChangeHandler: callStateChangeHandler);
 
     checkPermissionsUntilGranted();
 
     //listens to when call list is updated
-    FlutterVoipKit.callListStream.listen((allCalls) {
+    FlutterZVoipKit.callListStream.listen((allCalls) {
       setState(() {
         calls = allCalls;
       });
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               child: ElevatedButton(
                 child: Text("Grant Phone Permissions"),
                 onPressed: () {
-                  FlutterVoipKit.checkPermissions(openSettings: true)
+                  FlutterZVoipKit.checkPermissions(openSettings: true)
                       .then((value) => setState(() {
                             hasPermission = value;
                           }));
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text("Simlualate incoming call"),
                     onPressed: () {
                       Future.delayed(const Duration(seconds: 2)).then((value) {
-                        FlutterVoipKit.reportIncomingCall(
+                        FlutterZVoipKit.reportIncomingCall(
                             handle: "${Random().nextInt(10)}" * 9,
                             uuid: Uuid().v4());
                       });
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton(
                     child: Text("Start Call outgoing call"),
                     onPressed: () {
-                      FlutterVoipKit.startCall(
+                      FlutterZVoipKit.startCall(
                         "${Random().nextInt(10)}" * 9,
                       );
                     },
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
     Future.delayed(const Duration(milliseconds: 100)).then((value) async {
       //delay to wait for init state to be done
       hasPermission =
-          await FlutterVoipKit.checkPermissions(openSettings: false);
+          await FlutterZVoipKit.checkPermissions(openSettings: false);
       bool first = true; //dont bring to settings first time
       while (!hasPermission) {
         await showDialog(
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
         );
 
         hasPermission =
-            await FlutterVoipKit.checkPermissions(openSettings: !first);
+            await FlutterZVoipKit.checkPermissions(openSettings: !first);
         first = false;
         if (!hasPermission) {
           await Future.delayed(const Duration(seconds: 1));

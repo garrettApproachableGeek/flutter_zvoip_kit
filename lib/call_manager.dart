@@ -32,7 +32,7 @@ class CallManager {
   ///Ends all calls
   void endAll() async {
     for (Call call in _calls) {
-      await FlutterVoipKit
+      await FlutterZVoipKit
           .callStateChangeHandler!(call..callState = CallState.ended);
     }
     _calls.clear();
